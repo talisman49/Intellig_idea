@@ -9,5 +9,6 @@ RUN ./gradlew assemble
 
 FROM openjdk:11
 WORKDIR /opt/hello-spring
-COPY --from=base /opt/gradle-6.7.1/lib/*.jar ./
+COPY --from=base /hello-gradle/build/libs/demo-0.0.1-SNAPSHOT.jar ./
+-bin.zip ./
 CMD java -jar demo-0.0.1-SNAPSHOT.jar
