@@ -4,16 +4,21 @@ pipeline {
         skipStagesAfterUnstable()
     }
     stages {
+
+        stage('Test'){
+            steps {
+                echo 'Testing'
+                sh './gradlew clean test'
+                junit 'build/test/results/test/TEST-*.xml'
+            }
+        }
+        
         stage('Build') {
             steps {
                 sh 'make'
             }
         }
-        stage('Test'){
-            steps {
-                sh 'make check'
-            }
-        }
+        
         stage('Deploy') {
             steps {
                 sh 'make publish'
